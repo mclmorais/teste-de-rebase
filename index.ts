@@ -16,6 +16,15 @@ app.get('/values/:id', (req, res) => {
     res.json(database.find((value: any) => value.id === Number(req.params.id)))
 })
 
+app.post('/values', (req, res) => {
+    const value = {
+        id: database.length + 1,
+        value: req.query.value
+    }
+    database.push(value)
+    res.json(value)
+})
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
